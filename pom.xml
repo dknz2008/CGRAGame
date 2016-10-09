@@ -68,4 +68,13 @@
 
     </dependencies>
 
+
+
+    <repositories>
+        <repository>
+            <url>http://maven.tangentmc.net/repository/victoria</url>
+            <id>tangentmc</id>
+        </repository>
+    </repositories>
+
 </project>
