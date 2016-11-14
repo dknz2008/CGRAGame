@@ -24,8 +24,14 @@ public class Game extends PApplet {
         clear();
         pushMatrix();
 
-        translate(width/2,height/2);
+
+
+
+        translate(width/2, (float)(1.5*(height/2)));
+        rotateX(radians(90));
         translate(-p.position.x, -p.position.y);
+
+
 
         p.move(this);
         p.draw(this);
@@ -50,7 +56,7 @@ public class Game extends PApplet {
         }
     }
     public void settings() {
-        size(1600,800,P3D);
+        size(600,600,P3D);
     }
 
 }
