@@ -45,7 +45,7 @@ public class Tile extends Collideable{
         game.translate(x*width, y*height);
 
         if(type.equals("wall")) {
-            game.box(width, height, 100);
+            game.box(width, width, width);
         }
         game.popMatrix();
     }

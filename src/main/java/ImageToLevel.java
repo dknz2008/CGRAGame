@@ -15,7 +15,7 @@ public class ImageToLevel {
 
     ArrayList<Tile> tiles = new ArrayList<Tile>();
 
-    private static final int WALL = new Color(255,255,255).getRGB();
+    private static final int WALL = new Color(0, 0, 0).getRGB();
     private static final int PICKUP = new Color(255,0,0).getRGB();
 
     public ImageToLevel(Game game, String fName) {

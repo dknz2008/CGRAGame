@@ -14,6 +14,7 @@ public class Game extends PApplet {
 
     private Importer importer;
     Player p;
+    keys k;
     ImageToLevel level;
 
     public void draw() {
@@ -28,7 +29,6 @@ public class Game extends PApplet {
 
 
         translate(width/2, (float)(1.5*(height/2)));
-        rotateX(radians(90));
         translate(-p.position.x, -p.position.y);
 
 
@@ -45,7 +45,7 @@ public class Game extends PApplet {
     }
     public void setup() {
 
-        level = new ImageToLevel(this, "test.png");
+        level = new ImageToLevel(this, "Level1.png");
 
         noStroke();
         try {

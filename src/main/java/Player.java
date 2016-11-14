@@ -9,7 +9,10 @@ import java.io.IOException;
  * Created by TML_TEST on 7/10/2016.
  */
 public class Player extends Collideable{
-    PVector position = new PVector(100,100);
+
+    PVector position = new PVector(500,1500);
+    String playerDirection = "up";
+    int speed = 10;
 
     MD2Model model;
     Player(Game game, Importer importer) throws IOException {
@@ -18,7 +21,7 @@ public class Player extends Collideable{
     }
 
     float getHeight() {
-        return 100;
+        return 80;
     }
     float getWidth(){
         return 100;
@@ -38,18 +41,10 @@ public class Player extends Collideable{
         PVector oldPos = this.position.copy();
 
 
-        if(game.keyPressed && game.key == 'w') {
-            position.y = position.y - 10;
-        }
-        if(game.keyPressed && game.key == 'a') {
-            position.x = position.x - 10;
-        }
-        if(game.keyPressed && game.key == 's') {
-            position.y = position.y + 10;
-        }
-        if(game.keyPressed && game.key == 'd') {
-            position.x = position.x + 10;
-        }
+        if (game.k.keys[0]==true) position.x = position.x + speed;
+        if (game.k.keys[1]==true) position.x = position.x - speed;
+        if (game.k.keys[2]==true) position.y = position.y  + speed;
+        if (game.k.keys[3]==true) position.y  = position.y  - speed;
 
         //If it intersects a wall move it back
         if (IntersectsWall()) {
@@ -59,6 +54,7 @@ public class Player extends Collideable{
     public void draw(Game game){
         game.pushMatrix();
         game.translate(position.x,position.y);
+        game.rotateX(game.radians(90));
         model.drawModel();
         game.popMatrix();
 
