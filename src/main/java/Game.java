@@ -33,10 +33,7 @@ public class Game extends PApplet {
         translate(-p.position.x, -p.position.y);
 
 
-
-        p.move(this);
-        p.draw(this);
-
+        p.loop(this);
 
         for(int i = 0; i < level.tiles.size(); i++) {
             level.tiles.get(i).draw();
@@ -57,7 +54,7 @@ public class Game extends PApplet {
         }
     }
     public void settings() {
-        size(600,600,P3D);
+        size(1200, 800, P3D);
     }
 
 

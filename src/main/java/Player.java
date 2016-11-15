@@ -1,5 +1,6 @@
 import net.tangentmc.model.MD2.Importer;
 import net.tangentmc.model.MD2.MD2Model;
+import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.io.File;
@@ -10,9 +11,16 @@ import java.io.IOException;
  */
 public class Player extends Collideable{
 
+    PVector oldPos;
     PVector position = new PVector(500,1500);
     String playerDirection = "up";
-    int speed = 10;
+    int speed = 1;
+
+    double velocityX = 0;
+    double velocityY = 0.0;
+    double gravity = 0.5;
+    boolean onGround = false;
+
 
     MD2Model model;
     Player(Game game, Importer importer) throws IOException {
@@ -35,26 +43,74 @@ public class Player extends Collideable{
         return position.y;
     }
 
-    public void move(Game game) {
 
+    void update() {
         //saving the old position of the player
-        PVector oldPos = this.position.copy();
+        oldPos = this.position.copy();
 
+        //if doesn't intersect wall turn on gravity
+        if (!IntersectsWall()) {
+            velocityY += gravity;
+            if (velocityY < -6.0f)       // If character is still ascending in the jump
+                velocityY = -6.0f;      // Limit the speed of ascent
 
-        if (game.keys[0]==true) position.x = position.x + speed;
-        if (game.keys[1]==true) position.x = position.x - speed;
-        if (game.keys[2]==true) position.y = position.y  + speed;
-        if (game.keys[3]==true) position.y  = position.y  - speed;
+        }
+
+        position.y += velocityY;
 
         //If it intersects a wall move it back
         if (IntersectsWall()) {
             position = oldPos;
         }
+
     }
+
+    void OnJumpKeyPressed() {
+        velocityY = -12.0f;   // Give a vertical boost to the players velocity to start jump
+    }
+
+
+    public void move(Game game) {
+
+        //saving the old position of the player
+        oldPos = this.position.copy();
+
+        if (game.keys[0]) {
+            velocityX += speed;
+        }
+        if (game.keys[1]) {
+            velocityX -= speed;
+        }
+
+        if (game.keys[2]) {
+            // velocityY += position.y  + speed;
+        }
+        if (game.keys[3]) {
+            OnJumpKeyPressed();
+        }
+
+        if (velocityX > 10) velocityX = 10;
+        if (velocityX < -10) velocityX = -10;
+
+        position.x += velocityX;
+
+        //If it intersects a wall move it back
+        if (IntersectsWall()) {
+            position = oldPos;
+            velocityX = 0;
+        }
+    }
+
+    public void loop(Game game) {
+        update();
+        move(game);
+        draw(game);
+    }
+
     public void draw(Game game){
         game.pushMatrix();
         game.translate(position.x,position.y);
-        game.rotateX(game.radians(90));
+        game.rotateX(PApplet.radians(90));
         model.drawModel();
         game.popMatrix();
 
