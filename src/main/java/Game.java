@@ -14,7 +14,8 @@ public class Game extends PApplet {
 
     private Importer importer;
     Player p;
-    keys k;
+    //storing all the key presses
+    boolean[] keys = new boolean[10];
     ImageToLevel level;
 
     public void draw() {
@@ -59,5 +60,98 @@ public class Game extends PApplet {
         size(600,600,P3D);
     }
 
-}
 
+
+
+    //KEY PRESSES
+    public void keyPressed()
+    {
+        if (key == 'd' || key == 'D')
+        {
+            keys[0]=true;
+            p.playerDirection = "right";
+        }
+
+        if (key == 'a' || key == 'A' )
+        {
+            keys[1]=true;
+            p.playerDirection = "left";
+        }
+
+        if (key == 's' || key == 'S')
+        {
+            keys[2]=true;
+            p.playerDirection = "down";
+        }
+
+        if (key == 'w' || key == 'W')
+        {
+            keys[3]=true;
+            p.playerDirection = "up";
+        }
+
+        if (key == 'q')
+        {
+            keys[4]=true;
+        }
+
+        if (key == 'e')
+        {
+            keys[5]=true;
+        }
+
+        if (keyCode == SHIFT) {
+            keys[6] = true;
+        }
+
+        //Space for boost
+        if (key == ' ') {
+            keys[7] = true;
+        }
+
+    }
+
+    public void keyReleased()
+    {
+        if (key == 'd' || key == 'D')
+        {
+            keys[0]=false;
+        }
+
+        if (key == 'a' || key == 'A')
+        {
+            keys[1]=false;
+        }
+
+        if (key == 's' || key == 'S')
+        {
+            keys[2]=false;
+        }
+
+        if (key == 'w' || key == 'W')
+        {
+            keys[3]=false;
+        }
+
+        if (key == 'q')
+        {
+            keys[4]=false;
+        }
+
+        if (key == 'e')
+        {
+            keys[5]=false;
+        }
+
+        if (keyCode == SHIFT) {
+            keys[6] = false;
+        }
+
+        if (key == ' ') {
+            keys[7] = false;
+        }
+
+
+    }
+
+}

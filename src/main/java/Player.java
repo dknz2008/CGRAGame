@@ -41,10 +41,10 @@ public class Player extends Collideable{
         PVector oldPos = this.position.copy();
 
 
-        if (game.k.keys[0]==true) position.x = position.x + speed;
-        if (game.k.keys[1]==true) position.x = position.x - speed;
-        if (game.k.keys[2]==true) position.y = position.y  + speed;
-        if (game.k.keys[3]==true) position.y  = position.y  - speed;
+        if (game.keys[0]==true) position.x = position.x + speed;
+        if (game.keys[1]==true) position.x = position.x - speed;
+        if (game.keys[2]==true) position.y = position.y  + speed;
+        if (game.keys[3]==true) position.y  = position.y  - speed;
 
         //If it intersects a wall move it back
         if (IntersectsWall()) {
@@ -60,7 +60,4 @@ public class Player extends Collideable{
 
     }
 
-    }
-
-
-
+}
