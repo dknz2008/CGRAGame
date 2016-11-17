@@ -31,10 +31,10 @@ public class Player extends Collideable{
     }
 
     float getHeight() {
-        return 80;
+        return 100;
     }
     float getWidth(){
-        return 80;
+        return 100;
     }
 
     float getX() {

@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import net.tangentmc.model.MD2.Animation;
 import net.tangentmc.model.MD2.Importer;
 import net.tangentmc.model.MD2.MD2Model;
 import net.tangentmc.processing.ProcessingRunner;
@@ -31,6 +32,7 @@ public class Tile extends Collideable{
 
         try {
             model = importer.importModel(new File("block.md2"), game.loadImage("block.png"), game);
+            model.setAnimation((new Animation(1, 0, 100, 2f)), 2f);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,6 +70,8 @@ public class Tile extends Collideable{
         if (type.equals("wall")) {
             //game.box(width, width, width);
             model.drawModel();
+        } else {
+            game.box(width, width, width);
         }
         game.popMatrix();
     }
