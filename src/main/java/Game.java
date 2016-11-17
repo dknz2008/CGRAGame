@@ -21,17 +21,14 @@ public class Game extends PApplet {
     public void draw() {
 
 
-        print(level.tiles.size());
-
         clear();
+
+        //background(255,255,0);
         pushMatrix();
 
-
-
-
+        //translate to middle with slight offset
         translate(width/2, (float)(1.5*(height/2)));
         translate(-p.position.x, -p.position.y);
-
 
         p.loop(this);
 
@@ -40,24 +37,32 @@ public class Game extends PApplet {
         }
 
         popMatrix();
+
+        //fill(255, 0, 0);
+        text(frameRate, 20, 20);
+
     }
     public void setup() {
 
+        frameRate(60);
+
+        importer = new Importer();
         level = new ImageToLevel(this, "Level1.png");
 
         noStroke();
         try {
-            importer=new Importer();
             p = new Player(this,importer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     public void settings() {
-        size(1200, 800, P3D);
+        size(1600, 700, P3D);
     }
 
-
+    public Importer getImporter() {
+        return importer;
+    }
 
 
     //KEY PRESSES

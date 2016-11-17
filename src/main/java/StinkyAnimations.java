@@ -6,8 +6,11 @@ import lombok.Getter;
  */
 @Getter
 public enum StinkyAnimations {
-    WALKING(new Animation(12,0,100,1f)),
-    PUSHING(new Animation(10,22,100,1f));
+    //startframe, framecount, size, speed
+    WALKING_SLOW(new Animation(12, 0, 80, 0.1f)),
+    WALKING(new Animation(12, 0, 80, 0.3f)),
+    WALKING_FAST(new Animation(12, 0, 80, 2f)),
+    PUSHING(new Animation(10, 22, 80, 0.2f));
 
     private final Animation animation;
 
