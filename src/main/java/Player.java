@@ -1,3 +1,4 @@
+import net.tangentmc.model.MD2.Animation;
 import net.tangentmc.model.MD2.Importer;
 import net.tangentmc.model.MD2.MD2Model;
 import processing.core.PApplet;
@@ -60,8 +61,12 @@ public class Player extends Collideable{
 
         //If it intersects a wall move it back
         if (IntersectsWall()) {
-            position = oldPos;
-            shiftDown();
+            if (IntersectsWallFromTop()) {
+                position = oldPos;
+                shiftDown();
+            } else {
+                position = oldPos;
+            }
             jumpNumber = 0;
         }
 
@@ -126,9 +131,12 @@ public class Player extends Collideable{
 
         //If it intersects a wall move it back
         if (IntersectsWall()) {
-            position = oldPos;
-
-            shiftDown();
+            if (IntersectsWallFromTop()) {
+                position = oldPos;
+                shiftDown();
+            } else {
+                position = oldPos;
+            }
 
             velocityX = 0;
             jumpNumber = 0;
